@@ -1,0 +1,20 @@
+{
+  "name": "@kodeneko/kn-microfront",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build -ws",
+    "dev": "npm run dev -ws",
+    "lint": "npm run lint -ws",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
