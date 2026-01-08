@@ -32,16 +32,16 @@ export class AppComponent extends LitElement {
 
       .cont {
         flex-grow: 1;
-        margin: 1rem;
+        margin: 2rem;
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
       }
 
       .cont .examples {
         flex: 1;
         flex-direction: column;
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
       }
 
       .cont .poke {
