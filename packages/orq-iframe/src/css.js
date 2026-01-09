@@ -1,0 +1,59 @@
+import { css } from 'lit';
+
+export const styles = [css`
+    @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+    .mainCont {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+
+    .title {
+    font-family: Monoton, sans-serif;
+    text-align: center;
+    font-weight: normal;
+    font-size: 4rem;
+    margin: 1rem 0;
+    }
+
+    iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    }
+
+    .cont {
+    flex-grow: 1;
+    margin: 2rem;
+    display: flex;
+    gap: 2rem;
+    }
+
+    .cont .examples {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    gap: 2rem;
+    }
+
+    .cont .poke {
+    flex: 2;
+    display: flex;
+    }
+
+    .frame {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border: 0.2rem dashed darkgray;
+    box-sizing: border-box;
+    }
+
+    footer {
+    margin: 2rem;
+    text-align: center;
+    font-weight: bold;
+    }
+`]

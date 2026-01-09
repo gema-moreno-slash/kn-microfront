@@ -1,71 +1,37 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
+import { styles } from './css.js';
+
+const catUrl = 'http://localhost:3011';
+const dogUrl = 'http://localhost:3012';
 
 export class AppComponent extends LitElement {
 
   static properties = {}
 
-  static styles = [
-    css`
-      @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-
-      .mainCont {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .title {
-        font-family: Monoton, sans-serif;
-        text-align: center;
-        font-weight: normal;
-        font-size: 4rem;
-        margin: 1rem 0;
-      }
-
-      iframe {
-        border: none;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-      }
-
-      .cont {
-        flex-grow: 1;
-        margin: 2rem;
-        display: flex;
-        gap: 2rem;
-      }
-
-      .cont .examples {
-        flex: 1;
-        flex-direction: column;
-        display: flex;
-        gap: 2rem;
-      }
-
-      .cont .poke {
-        flex: 2;
-        display: flex;
-      }
-
-      .frame {
-        border-radius: 1rem;
-        padding: 0.5rem;
-        border: 0.2rem dashed darkgray;
-        box-sizing: border-box;
-      }
-
-      footer {
-        margin: 2rem;
-        text-align: center;
-        font-weight: bold;
-      }
-    `
-  ]
+  static styles = styles;
 
   constructor() {
     super();
+  }
+
+  firstUpdated() {
+    super.connectedCallback();
+
+    const iframeCat = this.renderRoot.querySelector('#catFrame');
+    const iframeDog = this.renderRoot.querySelector('#dogFrame');
+
+    window.addEventListener('message', (event) => {
+      console.log('Message recieved:', event.data);
+      if(event.origin === catUrl)
+        iframeDog.contentWindow.postMessage(event.data, dogUrl);
+      else if(event.origin === dogUrl)
+        iframeCat.contentWindow.postMessage(event.data, catUrl);
+    });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('message');
   }
 
   render() {
@@ -74,8 +40,8 @@ export class AppComponent extends LitElement {
         <h1 class="title">Microfronts</h1>
         <div class="cont">
           <div class="examples">
-            <iframe class="frame" src="http://localhost:3011"></iframe>
-            <iframe class="frame" src="http://localhost:3012"></iframe>
+            <iframe id="catFrame" class="frame" src=${catUrl}></iframe>
+            <iframe id="dogFrame" class="frame" src=${dogUrl}></iframe>
           </div>
           <div class="poke">
             <iframe class="frame" src="http://localhost:5173"></iframe>
