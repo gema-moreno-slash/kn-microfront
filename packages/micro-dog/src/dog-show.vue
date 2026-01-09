@@ -24,14 +24,14 @@ export default {
     const showMsg = () => {
       isDisplay.value = {show: true, msg: 'Guau!'};
       window.parent.postMessage('Guau!', 'http://localhost:3013');
-      setTimeout(() => isDisplay.value = {show: false, msg: ''}, 1000);
+      setTimeout(() => isDisplay.value = {show: false, msg: ''}, 1500);
     };
 
     onMounted(() => {
       window.addEventListener('message', (event) => {
         if(event.origin === orqUrl) {
           isDisplay.value = {show: true, msg: `He escuchado: "${event.data}"`};
-          setTimeout(() => isDisplay.value = {show: false, msg: ''}, 1000);
+          setTimeout(() => isDisplay.value = {show: false, msg: ''}, 1500);
         }
       });
     });

@@ -12,7 +12,7 @@ const CatShow = () => {
     window.addEventListener('message', (event) => {
       if(event.origin === orqUrl) {
         setDisplay({show: true, msg: `He escuchado: "${event.data}"`});
-        setTimeout(() => setDisplay({show: false, msg: ''}), 1000);
+        setTimeout(() => setDisplay({show: false, msg: ''}), 1500);
       }
     });
     return () => window.removeEventListener('message');
@@ -21,7 +21,7 @@ const CatShow = () => {
   const showMsg = () => {
     setDisplay({show: true, msg: 'Miau!'});
     window.parent.postMessage('Miau!', 'http://localhost:3013');
-    setTimeout(() => setDisplay({show: false, msg: ''}), 1000);
+    setTimeout(() => setDisplay({show: false, msg: ''}), 1500);
   }
 
   return (
